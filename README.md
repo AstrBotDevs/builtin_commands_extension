@@ -1,14 +1,45 @@
-# astrbot-plugin-helloworld
+# Builtin Commands Extension
 
-AstrBot 插件模板 / A template plugin for AstrBot plugin feature
+这是 AstrBot 的内置指令扩展插件。
 
-> [!NOTE]
-> This repo is just a template of [AstrBot](https://github.com/AstrBotDevs/AstrBot) Plugin.
-> 
-> [AstrBot](https://github.com/AstrBotDevs/AstrBot) is an agentic assistant for both personal and group conversations. It can be deployed across dozens of mainstream instant messaging platforms, including QQ, Telegram, Feishu, DingTalk, Slack, LINE, Discord, Matrix, etc. In addition, it provides a reliable and extensible conversational AI infrastructure for individuals, developers, and teams. Whether you need a personal AI companion, an intelligent customer support agent, an automation assistant, or an enterprise knowledge base, AstrBot enables you to quickly build AI applications directly within your existing messaging workflows.
+从 AstrBot `builtin_commands` 中迁出的非核心指令会放在这里维护。核心内置指令仍保留在 AstrBot 主程序中，包括：
 
-# Supports
+- `/sid`
+- `/stop`
+- `/reset`
+- `/new`
+- `/dashboard_update`
+- `/help`
 
-- [AstrBot Repo](https://github.com/AstrBotDevs/AstrBot)
-- [AstrBot Plugin Development Docs (Chinese)](https://docs.astrbot.app/dev/star/plugin-new.html)
-- [AstrBot Plugin Development Docs (English)](https://docs.astrbot.app/en/dev/star/plugin-new.html)
+## 提供的指令
+
+本插件提供以下扩展指令：
+
+- `/llm`：开启或关闭 LLM 聊天功能
+- `/plugin`：插件管理
+- `/op`：授权管理员
+- `/deop`：取消管理员授权
+- `/provider`：查看或切换 LLM Provider
+- `/model`：查看或切换模型
+- `/history`：查看对话记录
+- `/ls`：查看对话列表
+- `/groupnew`：创建群聊对话
+- `/switch`：切换对话
+- `/rename`：重命名当前对话
+- `/del`：删除当前对话
+- `/persona`：查看或切换 Persona
+- `/set`：设置会话变量
+- `/unset`：移除会话变量
+
+## 说明
+
+该插件复用 AstrBot 原有内置指令实现，目录结构与原 `astrbot/builtin_stars/builtin_commands` 保持一致：
+
+```text
+builtin_commands_extension/
+├── main.py
+├── metadata.yaml
+└── commands/
+```
+
+如需禁用这些扩展指令，可以在 WebUI 的插件管理中停用 `builtin_commands_extension`。
