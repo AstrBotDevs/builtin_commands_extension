@@ -51,7 +51,8 @@ class PersonaCommands:
         return lines
 
     async def persona(self, message: AstrMessageEvent) -> None:
-        l = message.message_str.split(" ")  # noqa: E741
+        # Keep the remainder intact so Persona names may contain spaces.
+        l = message.message_str.split(maxsplit=2)  # noqa: E741
         umo = message.unified_msg_origin
 
         curr_persona_name = "无"
@@ -178,7 +179,7 @@ class PersonaCommands:
             )
             message.set_result(MessageEventResult().message("取消人格成功。"))
         else:
-            ps = "".join(l[1:]).strip()
+            ps = " ".join(l[1:]).strip()
             if not cid:
                 message.set_result(
                     MessageEventResult().message(
