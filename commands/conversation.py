@@ -83,7 +83,9 @@ class ConversationCommands:
     async def convs(self, message: AstrMessageEvent, page: int = 1) -> None:
         """查看对话列表"""
         cfg = self.context.get_config(umo=message.unified_msg_origin)
-        agent_runner_type = cfg["provider_settings"]["agent_runner_type"]
+        agent_runner_type = cfg.get("agent_runner", {}).get("runner_type")
+        if agent_runner_type is None:
+            agent_runner_type = cfg["provider_settings"]["agent_runner_type"]
         if agent_runner_type in THIRD_PARTY_AGENT_RUNNER_KEY:
             message.set_result(
                 MessageEventResult().message(
@@ -263,7 +265,9 @@ class ConversationCommands:
             )
             return
 
-        agent_runner_type = cfg["provider_settings"]["agent_runner_type"]
+        agent_runner_type = cfg.get("agent_runner", {}).get("runner_type")
+        if agent_runner_type is None:
+            agent_runner_type = cfg["provider_settings"]["agent_runner_type"]
         if agent_runner_type in THIRD_PARTY_AGENT_RUNNER_KEY:
             active_event_registry.stop_all(umo, exclude=message)
             await sp.remove_async(
