@@ -19,7 +19,6 @@
 - `/plugin`：插件管理
 - `/op`：授权管理员
 - `/deop`：取消管理员授权
-- `/provider`：查看或切换 LLM Provider
 - `/model`：查看或切换模型
 - `/history`：查看对话记录
 - `/ls`：查看对话列表
