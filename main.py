@@ -15,8 +15,8 @@ from .commands import (
 @register(
     "builtin_commands_extension",
     "AstrBot",
-    "AstrBot 内置指令扩展，提供插件管理、Provider 管理、人格管理和会话管理等扩展指令。",
-    "1.0.0",
+    "AstrBot 内置指令扩展，提供插件管理、模型管理、人格管理和会话管理等扩展指令。",
+    "0.1.0",
 )
 class Main(star.Star):
     def __init__(self, context: star.Context) -> None:
@@ -78,17 +78,6 @@ class Main(star.Star):
     async def deop(self, event: AstrMessageEvent, admin_id: str) -> None:
         """取消授权管理员。deop <admin_id>"""
         await self.admin_c.deop(event, admin_id)
-
-    @filter.permission_type(filter.PermissionType.ADMIN)
-    @filter.command("provider")
-    async def provider(
-        self,
-        event: AstrMessageEvent,
-        idx: str | int | None = None,
-        idx2: int | None = None,
-    ) -> None:
-        """查看或者切换 LLM Provider"""
-        await self.provider_c.provider(event, idx, idx2)
 
     @filter.permission_type(filter.PermissionType.ADMIN)
     @filter.command("model")
