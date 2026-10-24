@@ -186,6 +186,7 @@ class ConversationCommands:
             )
 
             cpersona = await self._get_current_persona_id(session)
+            active_event_registry.stop_all(session, exclude=message)
             cid = await self.context.conversation_manager.new_conversation(
                 session,
                 message.get_platform_id(),
@@ -230,6 +231,7 @@ class ConversationCommands:
         else:
             conversation = conversations[index - 1]
             title = conversation.title if conversation.title else "新对话"
+            active_event_registry.stop_all(message.unified_msg_origin, exclude=message)
             await self.context.conversation_manager.switch_conversation(
                 message.unified_msg_origin,
                 conversation.cid,
