@@ -16,7 +16,7 @@ from .commands import (
     "builtin_commands_extension",
     "AstrBot",
     "AstrBot 内置指令扩展，提供插件管理、模型管理、人格管理和会话管理等扩展指令。",
-    "0.1.0",
+    "0.1.1",
 )
 class Main(star.Star):
     def __init__(self, context: star.Context) -> None:
